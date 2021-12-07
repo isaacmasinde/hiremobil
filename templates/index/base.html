@@ -1,0 +1,90 @@
+{%load static%}
+<html>
+<title>{%block title%} Hiremobil {%endblock title%}</title>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="{%static 'js/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
+	<link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/base.css'%}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css'%}">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="#" class="navbar-brand"><img  style="height: 50px;" src="{%static 'images/logo.png'%}"></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#Menu4">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"  id="Menu4">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"href="{%url 'index'%}">BOOK RIDE</a>
+                </li>
+                {%if request.user.is_authenticated%}
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-split" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">HI {{request.user.username}}</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{%url 'profile'%}">PROFILE</a>
+                        <a class="dropdown-item" href="{%url 'bookings'%}">BOOKINGS</a>
+                        {%if request.user.is_staff%}
+                        <a class="dropdown-item" href="chief/">ADMINISTRATION</a>
+                        {%endif%}
+                        <a class="dropdown-item" href="{%url 'logout'%}">LOGOUT</a>
+                    </div>
+                </li> 
+                {%else%}         
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'enter'%}">LOGIN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'register'%}">REGISTER</a>
+                </li>
+                {%endif%}
+            </ul>
+        </div>
+
+    </nav>
+    	{%block content%} {%endblock content%}
+    <hr>
+	<div class="footer container bg-light">
+		<div class="row">
+			<div class="col-lg-4 col-12">
+                <address>
+                    <strong>Hiremobil Limited</strong><br>
+                    Headquater office<br>
+                    Nairobi, Kenya<br>
+                    <abbr>Contact:+254712345678</abbr><br>
+                    <abbr>Email:hiremobil@gmail.com</abbr>
+                </address>
+			</div>
+            <div class="col-lg-4 col-12">
+                <address>
+                    <strong>Links</strong><br>
+                    <a href="{%url 'index'%}">Home</a><br>
+                    <a href="{%url 'index'%}">About</a><br>
+                    <a href="{%url 'enter'%}">Login</a><br>
+                    <a href="{%url 'register'%}">Register</a><br>
+                    <a href="{%url 'index'%}">Terms and Conditions</a>
+                </address>
+            </div>
+            <div class="col-lg-4 col-12">
+                <address>
+                    <strong>Our Servies</strong><br>
+                    <a href="#">Car rental</a><br>
+                    <a href="#">Ride Sharing</a><br>
+                    <a href="#">Adventures</a><br>
+                    <a href="#">Fleet Mangement</a><br>
+                    <a href="#">Racing</a>
+                </address>
+            </div>
+		</div>
+	</div>
+        <script type="text/javascript" src="{%static 'js/hover.js'%}"></script>
+</body>
+</html>

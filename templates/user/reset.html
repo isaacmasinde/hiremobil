@@ -1,0 +1,25 @@
+{%extends 'index/base.html'%}
+{%block title%}Reset Password{%endblock title%}
+{%block content%}
+<div class="container" style="margin-left: auto;">
+<div class="row">
+<div class="col-12 col-md-6">
+<div class="card">
+	<div class="card-body">
+		{%if error%}
+		<div class="card-header"><h4>{{error}}!</h4></div>
+		{%endif%}
+		<form class="needs-validation" method="POST" action="{%url 'reset'%}">
+			{%csrf_token%}
+			<label for="oldpass">Old password</label>
+			<input type="password" name="oldpass" class="form-control" required="">
+			<label for="newpass">New Password</label>
+			<input type="password" name="newpass" class="form-control" required="">
+			<input type="submit" class=" form-control btn btn-warning btn-block my-2" value="Change">
+		</form>
+	</div>
+</div>
+</div>
+</div>
+</div>
+{%endblock content%}

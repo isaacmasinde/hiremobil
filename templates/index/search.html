@@ -1,0 +1,33 @@
+{%extends 'index/base.html'%}
+{%block content%}
+<div class="container">
+	<div class="row">
+		{%if cars_list%}
+		{%for x in cars_list%}
+		<div class="col-12 col-md-3 col-sm-12 col-lg-3">
+			<div class="card">
+			<a href="{%url 'detail' x.RegNo %}"><img src="{{x.Pic.url}}" class="card-img-top"></a>
+			<div class="card-body">
+			<span><b>{{x.Type}} {{x.Model}} {{x.ModelYear}}</b></span><br>
+			<span><b>In {{x.Condition}} condition.</b></span>
+			<hr>
+			<span style="color: green;"><b>Ksh {{x.Fee}}/day</b></span><br>
+			<span style="color: cyan;"><b>{{x.Location.Name}}</b></span><br>
+			<span style="color: magenta;"><b>{{x.Location.City}}</b></span><br>
+				<button class=" btn btn-info"><strong><a href="{%url 'detail' x.RegNo %}">Hire</a></strong></button>
+			</div>
+			</div>
+			</div>
+		{%endfor%}
+		{%else%}
+		<div class="card">
+			<div class="card-body">
+				<div class="card-text">
+					There are currently no vehicles with that description. Try featured ones <a href="{%url 'index'%}">Here.</a>
+				</div>
+			</div>
+		</div>
+		{%endif%}
+	</div>
+</div>
+{%endblock content%}

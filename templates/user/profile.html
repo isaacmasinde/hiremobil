@@ -1,0 +1,75 @@
+{%extends 'user/base.html'%}
+{%block title%}Dashboard{%endblock title%}
+{%block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-5 my-2">
+			<div class="card">
+				<div class="card-header">
+					<div card-text>
+						<b>Account Details</b>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="card-text">
+					<b>{{client.Firstname}} {{client.Secondname}}</b>
+					Username:<b>{{client.Username}}</b>
+					<p>{{client.Idno}}</p>
+					<button class="btn btn-link btn-warning"><a href="{%url 'reset'%}">Reset Password</a></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-5 my-2">
+			<div class="card">
+				<div class="card-header">
+					<div card-text>
+						<b>Account Details</b>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="card-text">
+					{{client.Contact}}
+					<p>{{client.Email}}</p>
+					<button class="btn btn-link btn-warning"><a href="{%url 'messages'%}">View messages</a></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container my-2">
+	<div class="row">
+		<div class="col-12 col-md-5 my-2">
+			<div class="card">
+				<div class="card-header">
+					<div card-text>
+						<b>Pending Bookings</b>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="card-text">
+					This are bookings whose due date is yet to reach.
+					<h3><span class="badge">{{pending}}</span>Bookings</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-5 my-2">
+			<div class="card">
+				<div class="card-header">
+					<div card-text>
+						<b>Confirmed Bookings</b>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="card-text">
+					This are bookings that the Car Owner has stated as verified.
+					<h3><span class="badge">{{confirmed}}</span>Bookings</h3>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock content%}

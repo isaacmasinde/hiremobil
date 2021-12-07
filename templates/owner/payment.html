@@ -1,0 +1,69 @@
+{%extends 'owner/base.html'%}
+{%block title%}
+Payment
+{%endblock title%}
+{%block content%}
+<div class="container row">
+<div class="col-12 col-md-6">
+<table class="table table-responsive">
+	<tr>
+		<th>Registration No</th>
+		<td>{{car.RegNo}}</td>
+	</tr>
+	<tr>
+		<th>Type</th>
+		<td>{{car.Type}}</td>
+	</tr>
+	<tr>
+		<th>Model</th>
+		<td>{{car.Model}}</td>
+	</tr>
+	<tr>
+		<th>ModelYear</th>
+		<td>{{car.ModelYear}}</td>
+	</tr>
+	<tr>
+		<th>Mileage</th>
+		<td>{{car.Mileage}}</td>
+	</tr>
+	<tr>
+		<th>Daily Charges</th>
+		<td>{{car.Fee}}</td>
+	</tr>
+</table>
+<center>
+	<button id="paybtn" class="btn btn-warning">Make Payment</button>
+</center>
+</div>
+</div>
+<script type="text/javascript">
+	// static/main.js
+
+console.log("Sanity check!");
+
+// Get Stripe publishable key
+fetch("/account/config/")
+.then((result) => { return result.json(); })
+.then((data) => {
+  // Initialize Stripe.js
+  console.log(data.publicKey)
+  const stripe = Stripe(data.publicKey);
+
+  // new
+  // Event handler
+  document.querySelector("#paybtn").addEventListener("click", () => {
+    // Get Checkout Session ID
+    fetch("/account/create-checkout-session/")
+    .then((result) => { return result.json(); })
+    .then((data) => {
+      console.log(data);
+      // Redirect to Stripe Checkout
+      return stripe.redirectToCheckout({sessionId: data.sessionId})
+    })
+    .then((res) => {
+      console.log(res);
+    });
+  });
+});
+</script>
+{%endblock content%}

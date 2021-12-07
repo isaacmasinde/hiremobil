@@ -1,0 +1,26 @@
+{%extends 'index/base.html'%}
+{%block title%}Login{%endblock title%}
+{%block content%}
+<div class="container">
+<div class="h-100 row align-items-center">
+<div class="col-12 col-md-4">
+<div class="card">
+	<div class="card-body">
+		{%if error%}
+		<div class="card-header"><h4>{{error}}!</h4></div>
+		{%endif%}
+		<form class="needs-validation" method="POST" action="{%url 'enter'%}">
+			{%csrf_token%}
+			<label for="username">Username</label>
+			<input type="text" name="username" class="form-control">
+			<label for="password">Password</label>
+			<input type="password" name="password" class="form-control">
+			<input type="submit" class=" form-control btn btn-warning btn-block my-2" value="Login">
+			<p>Forgot your password <a href="{%url 'verify'%}">Reset</a>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+</div>
+{%endblock content%}

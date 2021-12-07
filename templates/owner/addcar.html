@@ -1,0 +1,73 @@
+{%extends 'owner/base.html'%}
+{%block content%}
+<div class="container">
+ <div class="row">
+ 	<div class="col-12 col-md-6">
+ 		<form action="" method="POST" class="needs-validation" enctype="multipart/form-data">
+ 			{%csrf_token%}
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<label for="regno">Registration Number</label>
+ 					<input type="text" class="form-control" name="regno" required="">
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12 col-md-4">
+ 					<label for="type">Type e.g Toyota</label>
+ 					<input type="text" class="form-control" placeholder="Toyota" name="type" required="">
+ 				</div>
+ 				<div class="col-12 col-md-4">
+ 					<label for="model">Model e.g Corrolla</label>
+ 					<input type="text" class="form-control" placeholder="Corrolla" name="model" required="">
+ 				</div>
+ 				<div class="col-12 col-md-4">
+ 					<label for="modelyear">ModelYear e.g 2020</label>
+ 					<input type="year" class="form-control" placeholder="2020" name="modelyear" required="">
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<label for="Condition col-md-4">Condition e.g New</label>
+ 					<input type="text" class="form-control" placeholder="New" name="condition" required="">
+ 				</div>
+ 				<div class="col-12 col-md-4">
+ 					<label for="mileage">Mileage in Km</label>
+ 					<input type="number" class="form-control" placeholder="mileage" name="mileage" required="">
+ 				</div>
+ 				<div class="col-12 col-md-4">
+ 					<label for="modelyear">Daily fee in USD</label>
+ 					<input type="number" class="form-control" placeholder="" name="fee" required="">
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<label>Provide a descrition for the Vehicle. Transmission , Horsepower etc.</label>
+ 					<textarea name="desc" class="form-control" maxlength="500" minlength="50" required=""></textarea>
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<label>Vehicle Image</label>
+ 					<input type="file" class="form-control" name="pic" accept="image/*" required="">
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<label>Pickup Location</label>
+ 					<select class="form-control" name="location" required="">
+ 						{%for x in locations%}
+ 						<option value="{{x.Name}}" class="form-control">{{x.Name}}</option>
+ 						{%endfor%}
+ 					</select>
+ 				</div>
+ 			</div>
+ 			<div class="row">
+ 				<div class="col-12">
+ 					<button type="submit" class="btn btn-block btn-warning">Add</button>
+ 				</div>
+ 			</div>
+ 		</form>
+ 	</div>
+ </div>	
+</div>
+{%endblock content%}

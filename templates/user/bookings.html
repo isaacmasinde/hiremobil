@@ -1,0 +1,40 @@
+{%extends 'user/base.html'%}
+{%block title%}Bookings{%endblock title%}
+{%block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-9">
+			{%if client.deal_set.all%}
+			<table class="table table-responsive">
+				<thead>
+					<th>Car</th>
+					<th>From</th>
+					<th>To</th>
+					<th>Charges</th>
+					<th>Pickup Location</th>
+					<th>Status</th>
+				</thead>
+			{%for x in client.deal_set.all%}
+				<tr>
+					<td>{{x.Car.Type}} {{x.Car.Model}} {{x.Car.ModelYear}}</td>
+					<td>{{x.Date}}</td>
+					<td>{{x.To}}</td>
+					<td>${{x.Charge}}</td>
+					<td>{{x.Location.Name}}</td>
+					<td>{{x.Status}}</td>
+				</tr>
+			{%endfor%}
+			</table>
+			{%else%}
+			<div class="card">
+				<div class="card-body">
+					<div class="card-text">
+						You have no bookings yet!
+					</div>
+				</div>
+			</div>
+			{%endif%}
+		</div>
+	</div>
+</div>
+{%endblock content%}

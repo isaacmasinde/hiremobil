@@ -1,0 +1,21 @@
+{%extends 'index/base.html'%}
+{%block title%}Verify{%endblock title%}
+{%block content%}
+<div class="container">
+<div class="row">
+<div class="col-12 col-md-6">
+<div class="card">
+	<div class="card-body">
+		<div class="card-header"><div class="card-text">Enter your contact to receive a One Time Pin.</div></div>
+		<form class="needs-validation" method="POST" action="{%url 'verify'%}">
+			{%csrf_token%}
+			<label for="username">Contact</label>
+			<input type="tel" pattern="[+]{1}[0-9]{12}" name="contact" class="form-control">
+			<input type="submit" class=" form-control btn btn-warning btn-block my-2" value="Send">
+		</form>
+	</div>
+</div>
+</div>
+</div>
+</div>
+{%endblock content%}

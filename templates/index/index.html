@@ -1,0 +1,155 @@
+{%extends 'index/base.html'%}
+{%block title%}HireMobil{%endblock title%}
+{%block content%}
+<div class="bg-dark">
+	<div class="row">
+		<div class="col-md-6 col-12">
+			<div class="py-5 text-center">
+				<h5 style="width: 70%;"><b style="color: white;">AFFORDABLE.CONVINIENT.RELIABLE</b></h5>
+				<h2><b style="color: white;">WORLD CLASS RIDES AT CHEAPER PRICES.</b></h2>
+				<h6 style="color: white;">Hiremobil provides you with a wide collection of vehicles to suit your needs.</h6>
+			<button class="btn btn-lg btn-warning">HIRE RIDE.</button>
+			</div>
+		</div>
+		<div class="col-md-5 col-12">
+		<div class="card bg-dark" style="margin-right:5%;">
+			<div class="card-body">
+				<form class="needs-validation" method="POST" action="{%url 'search'%}" style="margin:3%;">
+					{%csrf_token%}
+					<div class="row">
+						<div class="col-12 col-md-12">
+							<label style="color: white;">Brand</label>
+							<select class="form-control my-2" name="brand" required="">
+								{%for x in types%}
+                    			<option class="form-control" value="{{x.Type}}">{{x.Type}}</option>
+                    			{%endfor%}
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-md-12">
+							<label style="color: white;">Pickup Location</label>
+							<select class="form-control my-2" name="pickup" required="">
+								{%for x in pickup%}
+                    			<option class="form-control my-2" value="{{x.id}}">{{x.Name}}</option>
+                    			{%endfor%}
+                    		</select>
+						</div>
+						<div class="col-6 col-md-6">
+							<input type="date" placeholder="Date" class="form-control my-2" name="date" required="">
+						</div>
+						<div class="col-6 col-md-6">
+							<input type="time" name="time" placeholder="Time" class="form-control my-2" required="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-md-12">
+							<label style="color: white;">Drop Off Location</label>
+							<select class="form-control my-2" name='drop' required="">
+								
+								{%for x in pickup%}
+                    			<option class="form-control my-2" value="{{x.id}}">{{x.Name}}</option>
+                    			{%endfor%}
+                    		</select>
+						</div>
+						<div class="col-6 col-md-6">
+							<input type="date" placeholder="Date" class="form-control my-2" name="date" required="">
+						</div>
+						<div class="col-6 col-md-6">
+							<input type="time" name="time" placeholder="Time" class="form-control my-2" required="">
+						</div>
+					</div>
+				<div class="row">
+					<div class="col-12 col-md-12">
+					<button type="submit" class="btn btn-warning btn-block">Hire ride</button>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="py-5 text-center"><h2>Featured Cars.</h2></div>
+<div class="container">
+{%if search%}
+<div class="card">
+	<div class="card-body">
+		<div class="card-text"><h4>Your search results.</h4></div>
+	</div>
+</div>
+{%endif%}
+	<div class="row my-2" style="margin: 1px;">
+		{%for x in cars_list%}
+		<div class="col-12 col-md-3 col-sm-12 col-lg-3 my-2">
+			<div class="card">
+			<a href="{%url 'detail' x.RegNo %}"><img src="{{x.Pic.url}}" class="card-img-top"></a>
+			<div class="card-body">
+			<span><b>{{x.Type}} {{x.Model}} {{x.ModelYear}}</b></span><br>
+			<span><b>In {{x.Condition}} condition.</b></span>
+			<hr>
+			<span style="color: green;"><b>Ksh {{x.Fee}}/day</b></span><br>
+			<span style="color: cyan;"><b>{{x.Location.Name}}</b></span><br>
+			<span style="color: magenta;"><b>{{x.Location.City}}</b></span><br>
+				<button class=" btn btn-info"><strong><a href="{%url 'detail' x.RegNo %}">Hire</a></strong></button>
+			</div>
+			</div>
+			</div>
+		{%endfor%}
+	</div>
+	
+<div class="container">
+	<div class="py-5 text-center"><h2>Hiremobil Core Services</h2></div>
+	<div class="row">
+		<div class="col-12 col-md-4 my-2 top" id='div1' span='1'>
+			<div class="card">
+				<div class="card-body">
+					<div class="py-3"><h3 id='1'><i  class="fa fa-car" aria-hidden="true"></i>Car Hiring.</h3></div>
+					<div class="card-text">Hiremobil is a reliable plartform for both car rentors and hires</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 my-2 top" id="div2" span='2'>
+			<div class="card">
+				<div class="card-body">
+					<div class="py-3"><h3 id="2"><i  class="fa fa-user" aria-hidden="true"></i>Racing</h3></div>
+					<div class="card-text">We rent race cars! You mustn't own one for your spins!</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 my-2 top" id="div3" span='3'>
+			<div class="card">
+				<div class="card-body">
+					<div class="py-3"><h3 id="3"><i  class="fa fa-ship" aria-hidden="true"></i>Transportion</h3></div>
+					<div class="card-text">You moving your home? Catered for check our trucks section.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 my-2 top" id="div4" span='4'>
+			<div class="card">
+				<div class="card-body">
+					<div class="py-3"><h3 id="4"><i  class="fa fa-taxi" aria-hidden="true"></i>Ride Sharing Business</h3></div>
+					<div class="card-text">You can hire cars with us and ride share with uber, lyft make some money.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 my-2 top" id="div5" span='5'>
+			<div class="card">
+				<div class="card-body">
+					<div class="py-3"><h3 id="5"><i  class="fa fa-whatsapp" aria-hidden="true"></i>Fleet Management</h3></div>
+					<div class="card-text">Manage your fleet easily with us.This will ensure maximum profitablity.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 my-2 top" id="div6" span='6'>
+			<div class="card">
+				<div class="card-body">
+					<div class="py-3"><h3 id="6"><i  class="fa fa-twitter" aria-hidden="true"></i>Adventures</h3></div>
+					<div class="card-text">Enjoy better rides for your adventures! We ensure that.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{%endblock content%}

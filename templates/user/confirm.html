@@ -1,0 +1,27 @@
+{%extends 'index/base.html'%}
+{%block title%}Confirm otp{%endblock title%}
+{%block content%}
+<div class="container" style="margin-left: auto;">
+<div class="row">
+<div class="col-12 col-md-6">
+<div class="card">
+	<div class="card-body">
+		{%if error%}
+		<div class="card-header"><h4>{{error}}!</h4></div>
+		{%endif%}
+		<form class="needs-validation" method="POST" action="{%url 'confirm'%}">
+			{%csrf_token%}
+			<label for="otp">One Time Pin</label>
+			<input type="text" name="otp" class="form-control">
+			<input type="hidden" name="contact" value="{{contact}}" class="form-control">
+			<label for="password">New Password</label>
+			<input type="password" name="password" class="form-control">
+			<input type="submit" class=" form-control btn btn-warning btn-block my-2" value="Login">
+			<p>Forgot your password <a href="{%url 'confirm'%}">Reset</a>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+</div>
+{%endblock content%}

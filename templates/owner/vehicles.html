@@ -1,0 +1,48 @@
+{%extends 'owner/base.html'%}
+{%block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-9">
+			{%if owner.car_set.all%}
+			<table class="table table-responsive">
+				<thead>
+					<th>Registration</th>
+					<th>Type</th>
+					<th>Model</th>
+					<th>Model Year</th>
+					<th>Fee</th>
+					<th>Description</th>
+					<th>Edit</th>
+				</thead>
+				{%for x in owner.car_set.all%}
+				<tr>
+					<td>{{x.RegNo}}</td>
+					<td>{{x.Type}}</td>
+					<td>{{x.Model}}</td>
+					<td>{{x.ModelYear}}</td>
+					<td>${{x.Fee}}</td>
+					<td>{{x.Description}}</td>
+					<td><a href="{%url 'remove' x.RegNo %}">Delete</a></td>
+				</tr>
+				{%endfor%}
+			</table>
+			<div class="card">
+				<div class="card-body">
+					<div class="card-text">
+						You have another car? <a href="{%url 'add'%}">Add</a>
+					</div>
+				</div>
+			</div>
+			{%else%}
+			<div class="card">
+				<div class="card-body">
+					<div class="card-text">
+						You have no cars! <a href="{%url 'add'%}">Add</a>
+					</div>
+				</div>
+			</div>
+			{%endif%}
+		</div>
+	</div>
+</div>
+{%endblock content%}
